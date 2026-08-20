@@ -1,111 +1,119 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, ShieldCheck, BookOpen, Heart, ArrowRight, Compass, ExternalLink } from 'lucide-react';
-import { PulsingDot } from '@/components/ui';
+import { ShieldCheck, Search, BookOpen, Sparkles, ArrowRight, Compass, ExternalLink } from 'lucide-react';
 
-// Faithful port of ajch_platform's former Pathways.tsx (Discovery) hero
-// pattern, re-themed to Spark's amber/emerald kids accent. See
+// "Big & Playful" landing page direction — larger scale, journey-style
+// steps, chunkier CTA. Chosen from three composition directions explored
+// on a design canvas; still built entirely on Spark's existing brand
+// system (@aaryaai/brand tokens + amber/emerald accent extension). See
 // docs/design-sync.md.
+const STEPS = [
+  {
+    icon: Search,
+    accent: 'var(--aarya-accent)',
+    bg: 'rgba(251,191,36,0.10)',
+    title: '1. Pick a lesson',
+    desc: 'Short, simple topics about how AI works in everyday life.',
+  },
+  {
+    icon: BookOpen,
+    accent: 'var(--aarya-accent-2)',
+    bg: 'rgba(52,211,153,0.10)',
+    title: '2. Read & explore',
+    desc: 'Clear words, real examples, no grown-up jargon.',
+  },
+  {
+    icon: Sparkles,
+    accent: 'var(--aarya-accent)',
+    bg: 'rgba(251,191,36,0.10)',
+    title: '3. Stay curious',
+    desc: 'No account, no tracking — just come back and read more.',
+  },
+] as const;
+
 export default function Home() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => { requestAnimationFrame(() => setMounted(true)); }, []);
 
   return (
-    <div className="space-y-16 max-w-3xl mx-auto px-4 py-10">
+    <div className="space-y-24 pb-10">
 
       {/*━━━━ HERO */}
-      <section className={`transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-        <div className="flex items-center gap-2 mb-4">
-          <PulsingDot active color="bg-[var(--aarya-accent)]" size="sm" />
-          <span className="text-[10px] font-black uppercase tracking-[0.2em]" style={{ color: 'var(--aarya-accent)' }}>
-            Spark
+      <section className={`max-w-xl mx-auto px-4 pt-24 text-center transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+        <div
+          className="inline-flex items-center gap-2 px-[18px] py-2 rounded-full mb-7"
+          style={{ background: 'rgba(251,191,36,0.08)', border: '1px solid rgba(251,191,36,0.25)' }}
+        >
+          <ShieldCheck size={15} className="text-[var(--aarya-accent)]" />
+          <span className="text-xs font-black text-[var(--aarya-accent)]">
+            Every lesson is safety-reviewed — no exceptions
           </span>
         </div>
-        <h1 className="text-4xl font-black text-white leading-tight mb-3">
-          AI lessons for{' '}
-          <span className="heading-gradient">curious kids.</span>
+
+        <h1 className="text-6xl font-black leading-[1.02] tracking-tight text-white mb-6">
+          Learn AI.
+          <br />
+          <span className="heading-gradient">Have fun doing it.</span>
         </h1>
-        <p className="text-base text-slate-400 max-w-2xl leading-relaxed">
-          Free, safe AI lessons for kids — no jargon, no shortcuts on safety,
-          nothing to sign up for. Every lesson gets reviewed before it's
-          published here. No exceptions.
+
+        <p className="text-lg leading-relaxed text-slate-400 max-w-md mx-auto mb-9">
+          Free lessons made just for kids — no jargon, no sign-up, nothing tracked.
         </p>
+
+        <Link
+          to="/kids"
+          className="inline-flex items-center gap-2.5 px-10 py-[18px] rounded-2xl text-[17px] font-black transition-transform duration-200 hover:-translate-y-1 hover:scale-[1.02]"
+          style={{
+            color: '#0e1a2d',
+            background: 'linear-gradient(135deg, var(--aarya-accent), var(--aarya-accent-2))',
+            boxShadow: '0 12px 32px -8px color-mix(in srgb, var(--aarya-accent) 40%, transparent)',
+          }}
+        >
+          Start exploring
+          <ArrowRight size={18} strokeWidth={2.6} />
+        </Link>
       </section>
 
-      {/*━━━━ WHAT IS SPARK? */}
-      <section className={`transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-        style={{ transitionDelay: '60ms' }}>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {[
-            { icon: ShieldCheck, label: 'Safety-reviewed', desc: 'Every lesson passes a dedicated child-safety review before it publishes.' },
-            { icon: BookOpen, label: 'No jargon', desc: 'Written for kids, not adults — clear language, real examples.' },
-            { icon: Heart, label: 'No data collected', desc: 'Nothing to sign up for, nothing tracked. This site does not need your data.' },
-          ].map((item) => {
-            const Icon = item.icon;
+      {/*━━━━ HOW SPARK WORKS */}
+      <section className={`max-w-2xl mx-auto px-4 transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        style={{ transitionDelay: '80ms' }}>
+        <p className="text-center text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 mb-12">
+          How Spark works
+        </p>
+        <div className="relative grid grid-cols-3 gap-6">
+          <svg className="absolute top-11 left-0 w-full h-0.5 -z-10" preserveAspectRatio="none" viewBox="0 0 700 2">
+            <line x1="120" y1="1" x2="580" y2="1" stroke="var(--aarya-accent)" strokeWidth="2" strokeDasharray="2 10" opacity="0.35" />
+          </svg>
+          {STEPS.map((step) => {
+            const Icon = step.icon;
             return (
-              <div key={item.label} className="rounded-2xl p-5"
-                style={{ background: 'rgba(8,15,30,0.97)', border: '1px solid rgba(71,85,105,0.18)' }}>
-                <Icon size={18} className="text-slate-400 mb-3" />
-                <p className="text-sm font-black text-white mb-1">{item.label}</p>
-                <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+              <div key={step.title} className="text-center transition-transform duration-200 hover:-translate-y-1">
+                <div
+                  className="w-[88px] h-[88px] mx-auto mb-5 rounded-full flex items-center justify-center"
+                  style={{ background: step.bg, border: `2px solid ${step.accent}`, boxShadow: `0 0 28px -8px ${step.accent}` }}
+                >
+                  <Icon size={34} style={{ color: step.accent }} />
+                </div>
+                <p className="text-[15px] font-black text-white mb-2">{step.title}</p>
+                <p className="text-[13px] text-slate-400 leading-relaxed">{step.desc}</p>
               </div>
             );
           })}
         </div>
       </section>
 
-      {/*━━━━ FOR KIDS CARD */}
-      <section className={`transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-        style={{ transitionDelay: '120ms' }}>
-        <div
-          className="group relative rounded-2xl overflow-hidden transition-all duration-500"
-          style={{ background: 'rgba(8,15,30,0.97)', border: '1px solid rgba(251,191,36,0.22)' }}
-        >
-          <div className="absolute top-0 left-0 right-0 h-[2px] opacity-70"
-            style={{ background: 'linear-gradient(90deg, #fbbf24, transparent 70%)' }} />
-          <div className="relative p-6">
-            <div className="flex flex-col sm:flex-row sm:items-start gap-5">
-              <div className="shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center"
-                style={{ background: 'rgba(251,191,36,0.08)', border: '2px solid #fbbf24', boxShadow: '0 0 20px -6px #fbbf2440' }}>
-                <Sparkles size={22} style={{ color: '#fbbf24' }} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h2 className="text-xl font-black text-white mb-1 tracking-tight">For Kids</h2>
-                <p className="text-sm text-slate-400 leading-relaxed mb-5">
-                  Safe, simple lessons on how AI works and how to use it
-                  responsibly — built for kids, checked by grown-ups.
-                </p>
-                <Link
-                  to="/kids"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-black text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg"
-                  style={{ background: 'linear-gradient(135deg, #fbbf24, #fbbf24cc)', border: '1px solid rgba(251,191,36,0.22)' }}
-                >
-                  <BookOpen size={13} /> Explore <ArrowRight size={13} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/*━━━━ CROSS-LINK TO COMPASS */}
-      <section className={`transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
-        style={{ transitionDelay: '200ms' }}>
-        <div className="rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-5"
-          style={{ background: 'rgba(29,78,216,0.06)', border: '1px solid rgba(56,189,248,0.18)' }}>
-          <div className="flex-1">
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-1" style={{ color: '#38bdf8' }}>
-              Looking for AI skills for work, not for kids?
-            </p>
-            <h3 className="text-base font-black text-white mb-1">This isn't your section — Compass is.</h3>
-            <p className="text-sm text-slate-400">
-              Practical AI for non-technical professionals — finance, ops,
-              anyone with a job to do. Same Aarya family, different audience.
-            </p>
-          </div>
+      <section className={`max-w-2xl mx-auto px-4 transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+        style={{ transitionDelay: '160ms' }}>
+        <div
+          className="rounded-[22px] p-8 text-center"
+          style={{ background: 'rgba(29,78,216,0.06)', border: '1px solid rgba(56,189,248,0.18)' }}
+        >
+          <h3 className="text-lg font-black text-white mb-2">Grown-up looking for work skills instead?</h3>
+          <p className="text-sm text-slate-400 mb-5">Compass teaches practical AI for non-technical professionals.</p>
           <a
             href="https://compass.aaryaai.dev"
-            className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 text-sm font-black rounded-xl text-white transition-all hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-black text-white transition-all hover:-translate-y-0.5"
             style={{ background: 'linear-gradient(135deg,#1d4ed8,#1e40af)', border: '1px solid rgba(56,189,248,0.45)' }}
           >
             <Compass size={14} /> Visit Compass <ExternalLink size={14} />
