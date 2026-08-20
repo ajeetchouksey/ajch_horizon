@@ -3,9 +3,9 @@ import type { ElementType } from 'react';
 
 // ─── Variant map ─────────────────────────────────────────────────────────────
 const VARIANTS = {
-  primary: 'bg-violet-600 hover:bg-violet-500 text-white border-transparent shadow-sm hover:shadow-violet-500/25',
+  primary: 'bg-[var(--aarya-accent)] hover:opacity-90 text-white border-transparent shadow-sm',
   ghost:   'bg-transparent hover:bg-slate-800/70 text-slate-400 hover:text-white border-transparent',
-  outline: 'bg-transparent hover:bg-violet-500/10 text-violet-300 border-violet-500/30 hover:border-violet-400/60',
+  outline: 'bg-transparent hover:bg-[var(--aarya-accent)]/10 text-[var(--aarya-accent)] border-[var(--aarya-accent)]/30 hover:border-[var(--aarya-accent)]/60',
   danger:  'bg-transparent hover:bg-red-500/10 text-red-400 border-red-500/30 hover:border-red-400/60',
 } as const;
 

@@ -28,7 +28,7 @@ export function SectionHeader({
   badgeVariant = 'violet',
   className = '',
   as: Tag = 'h1',
-  iconColor = 'text-violet-400',
+  iconColor = 'text-[var(--aarya-accent)]',
 }: SectionHeaderProps) {
   const titleSize = Tag === 'h1' ? 'text-xl font-bold' : 'text-lg font-semibold';
 

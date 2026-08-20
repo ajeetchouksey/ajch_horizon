@@ -1,9 +1,19 @@
 # Design system sync
 
 `ajch_spark` shares a look-and-feel with `ajch_platform` (the Aarya — My AI
-Learning Hub main app) but is a fully independent repo/deploy — there is no
-shared npm package. `src/components/ui/*` and the base layer of
-`src/index.css` were **copied**, not linked, from `ajch_platform`.
+Learning Hub main app) but is a fully independent repo/deploy.
+
+**Colors and typography are no longer forked** — as of the `@aaryaai/brand`
+package, Spark imports the shared token standard directly (see that
+package's `docs/BRAND.md`) and layers its own kids-specific accent pair
+(`--aarya-accent` = amber, `--aarya-accent-2` = emerald) on top, per the
+documented extension mechanism. Don't hand-edit color hex values in this
+repo's CSS — change the accent pair in `src/index.css`'s `:root` override,
+or raise a change in `@aaryaai/brand` if it's a base-palette issue.
+
+**Components are still copied, not shared.** `src/components/ui/*` was
+copied, not linked, from `ajch_platform` — that part of this doc (below)
+still applies.
 
 ## Snapshot origin
 

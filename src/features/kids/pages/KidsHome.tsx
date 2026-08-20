@@ -8,12 +8,12 @@ export default function KidsHome() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-16 text-center">
       <div className="flex justify-center mb-4">
-        <Sparkles size={32} className="text-violet-400" />
+        <Sparkles size={32} className="text-[var(--aarya-accent)]" />
       </div>
       <SectionHeader
         title="For Kids"
         badge="Coming soon"
-        badgeVariant="violet"
+        badgeVariant="amber"
         className="items-center [&>div]:justify-center text-center"
       />
       <p className="text-slate-400 max-w-md mx-auto mb-6">
@@ -21,10 +21,10 @@ export default function KidsHome() {
         for age-appropriate language and safety before it's published here.
         No shortcuts.
       </p>
-      <GlassCard accent="violet" className="p-4 inline-flex items-center gap-2 text-left" rounded="xl">
-        <ShieldCheck size={18} className="text-violet-400 shrink-0" />
+      <GlassCard accent="amber" className="p-4 inline-flex items-center gap-2 text-left" rounded="xl">
+        <ShieldCheck size={18} className="text-[var(--aarya-accent)] shrink-0" />
         <span className="text-xs text-slate-400">
-          <Badge label="No data collected here" variant="violet" size="xs" className="mr-1.5" />
+          <Badge label="No data collected here" variant="amber" size="xs" className="mr-1.5" />
           this page doesn't track you.
         </span>
       </GlassCard>

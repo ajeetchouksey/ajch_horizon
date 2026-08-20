@@ -3,9 +3,20 @@
  * Trimmed to the base layer + shared visual primitives used by src/components/ui.
  * Study-notes-specific classes (highlight/scribble/note callouts, prose code
  * blocks) were intentionally dropped — Spark has no study-notes feature.
+ *
+ * Color/type tokens now come from @aaryaai/brand, not hardcoded here — see
+ * docs/BRAND.md in that package for the standard + this vertical's extension.
  */
+@import "@aaryaai/brand/tokens/index.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+/* Spark's extension: kids accent pair — warmer, brighter, higher-contrast
+   than the base violet/sky, per docs/BRAND.md's assignment table. */
+:root {
+  --aarya-accent: var(--aarya-amber-400);
+  --aarya-accent-2: var(--aarya-emerald-400);
+}
 
 @layer base {
   html {
@@ -34,7 +45,7 @@
 }
 
 .heading-gradient {
-  background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 50%, #a78bfa 100%);
+  background: linear-gradient(135deg, var(--aarya-accent) 0%, var(--aarya-accent-2) 50%, var(--aarya-accent) 100%);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -120,7 +131,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
-  background: var(--accent-color, linear-gradient(90deg, #8b5cf6, #a78bfa));
+  background: var(--accent-color, linear-gradient(90deg, var(--aarya-accent), var(--aarya-accent-2)));
   border-radius: 12px 12px 0 0;
   opacity: 0.7;
   pointer-events: none;

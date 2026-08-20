@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aaryaai/brand": "github:ajeetchouksey/ajch_brand#main",
     "lucide-react": "^1.28.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.8",
