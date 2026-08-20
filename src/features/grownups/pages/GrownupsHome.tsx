@@ -1,14 +1,8 @@
-import { ShieldCheck, TrendingUp, Brain, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Users, BookOpen, ArrowRight } from 'lucide-react';
 import { GlassCard, SectionHeader, Badge } from '@/components/ui';
-
-// Placeholder track grid — real content (extracted from ajch_platform's
-// former Discovery/Pathways TRACKS + MOCK_ARTICLES) lands in Phase 2.
-const TRACKS_PREVIEW = [
-  { label: 'AI Safety & Responsibility', icon: ShieldCheck, color: 'text-sky-400' },
-  { label: 'Applied AI for Practitioners', icon: TrendingUp, color: 'text-amber-400' },
-  { label: 'AI Ethics & Bias', icon: Brain, color: 'text-violet-400' },
-  { label: 'AI Productivity', icon: Zap, color: 'text-emerald-400' },
-] as const;
+import { TRACKS } from '../data/tracks';
+import { getArticlesForTrack } from '../data/articles';
 
 export default function GrownupsHome() {
   return (
@@ -16,24 +10,49 @@ export default function GrownupsHome() {
       <div className="text-center mb-10">
         <SectionHeader
           title="For Grown-ups"
-          badge="Migrating content"
+          badge={`${TRACKS.length} tracks`}
           badgeVariant="blue"
           className="items-center [&>div]:justify-center text-center"
         />
         <p className="text-slate-400 max-w-md mx-auto">
-          Practical AI skills for non-technical professionals. These tracks
-          are moving over from Aarya's main site — full articles land soon.
+          Practical AI skills for non-technical professionals — no jargon, no
+          prerequisites, no exam pressure. Pick the track built for you.
         </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-3">
-        {TRACKS_PREVIEW.map(({ label, icon: Icon, color }) => (
-          <GlassCard key={label} className="p-4 flex items-center gap-3" rounded="xl">
-            <Icon size={18} className={`shrink-0 ${color}`} />
-            <span className="text-sm text-slate-200">{label}</span>
-            <Badge label="Soon" variant="slate" size="xs" className="ml-auto" />
-          </GlassCard>
-        ))}
+      <div className="space-y-4">
+        {TRACKS.map((track) => {
+          const Icon = track.icon;
+          const articleCount = getArticlesForTrack(track.id).length;
+          return (
+            <GlassCard key={track.id} accent={track.accent} className="p-5" rounded="2xl">
+              <div className="flex items-start gap-4">
+                <div className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center bg-white/5">
+                  <Icon size={20} className="text-slate-200" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1.5">
+                    <Badge label={track.audience} variant={track.badgeVariant} icon={Users} />
+                    <span className="text-[11px] text-slate-500">{articleCount} articles</span>
+                  </div>
+                  <h2 className="text-lg font-bold text-white mb-1">{track.label}</h2>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-3">{track.description}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {track.topics.map((t) => (
+                      <Badge key={t} label={t} variant="slate" size="xs" />
+                    ))}
+                  </div>
+                  <Link
+                    to={`/grownups/${track.id}`}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-white/90 hover:text-white"
+                  >
+                    <BookOpen size={14} /> Browse {articleCount} articles <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </div>
+            </GlassCard>
+          );
+        })}
       </div>
     </div>
   );
