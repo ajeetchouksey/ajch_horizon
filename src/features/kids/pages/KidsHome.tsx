@@ -3,7 +3,7 @@ import { GlassCard, SectionHeader, Badge } from '@/components/ui';
 
 // Placeholder — real content is blocked on the child-safety review gate
 // (child-safety-reviewer agent) and the COPPA/data-collection decision.
-// See the Horizon plan, Phase 3.
+// See the Spark plan, Phase 3.
 export default function KidsHome() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-16 text-center">

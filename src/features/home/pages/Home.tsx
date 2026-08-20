@@ -8,7 +8,7 @@ export default function Home() {
       <div className="text-center mb-12">
         <p className="page-eyebrow justify-center">Aarya family</p>
         <h1 className="text-4xl font-bold mb-3">
-          <span className="heading-gradient">Horizon</span>
+          <span className="heading-gradient">Spark</span>
         </h1>
         <p className="text-slate-400 max-w-lg mx-auto">
           Free AI learning, built for two audiences who don't want the jargon —

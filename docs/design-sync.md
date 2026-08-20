@@ -1,6 +1,6 @@
 # Design system sync
 
-`ajch_horizon` shares a look-and-feel with `ajch_platform` (the Aarya — My AI
+`ajch_spark` shares a look-and-feel with `ajch_platform` (the Aarya — My AI
 Learning Hub main app) but is a fully independent repo/deploy — there is no
 shared npm package. `src/components/ui/*` and the base layer of
 `src/index.css` were **copied**, not linked, from `ajch_platform`.
@@ -11,7 +11,7 @@ shared npm package. `src/components/ui/*` and the base layer of
 - Source commit: `c3a02d7d9d497978388715101f59316d45f48e47`
 - Date forked: 2026-08-20
 - Files copied: `src/components/ui/{Avatar,Badge,Button,GlassCard,PulsingDot,SectionHeader,StatGrid,Timeline,VersionTag,Breadcrumb,index}.tsx`, plus the `@layer base` block, `.glass-*`, `.card-accent-top`, `.heading-gradient`, `.hide-scrollbar` rules from `src/index.css`.
-- Intentionally dropped: study-notes-specific classes (`.note-scribble`, `.note-important`, `.note-trap`, `.prose` code-block overrides) — not relevant to Horizon's content.
+- Intentionally dropped: study-notes-specific classes (`.note-scribble`, `.note-important`, `.note-trap`, `.prose` code-block overrides) — not relevant to Spark's content.
 
 ## Why copy instead of a shared package
 

@@ -21,7 +21,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
           <NavLink to="/" className="flex items-center gap-2">
             <Compass size={18} className="text-violet-400" />
-            <span className="font-bold text-white">Horizon</span>
+            <span className="font-bold text-white">Spark</span>
           </NavLink>
           <nav className="flex items-center gap-1">
             {NAV.map(({ to, label, icon: Icon, end }) => (

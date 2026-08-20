@@ -2,7 +2,7 @@
  * Forked from ajch_platform@c3a02d7 (2026-08-20) — see docs/design-sync.md.
  * Trimmed to the base layer + shared visual primitives used by src/components/ui.
  * Study-notes-specific classes (highlight/scribble/note callouts, prose code
- * blocks) were intentionally dropped — Horizon has no study-notes feature.
+ * blocks) were intentionally dropped — Spark has no study-notes feature.
  */
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";

@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://horizon.aaryaai.dev/sitemap.xml
+Sitemap: https://spark.aaryaai.dev/sitemap.xml

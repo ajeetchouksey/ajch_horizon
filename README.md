@@ -1,10 +1,10 @@
-# Horizon
+# Spark
 
 AI learning for kids and non-technical learners — a standalone app under the
 [Aarya — My AI Learning Hub](https://aaryaai.dev) family, deployed at
-`horizon.aaryaai.dev`.
+`spark.aaryaai.dev`.
 
-Horizon is the repositioned successor to `ajch_platform`'s former
+Spark is the repositioned successor to `ajch_platform`'s former
 "Discovery" feature (formerly "Horizons"). It's a fully independent
 Vite + React + TypeScript + Tailwind app — own repo, own Cloudflare Pages
 deployment, own content — sharing only visual design primitives with
@@ -21,9 +21,10 @@ a build pipeline.
 
 ## Status
 
-Phase 0 (scaffolding) — this is currently a placeholder shell proving the
-deploy pipeline end to end. See the "Horizon" plan for the full phased
-rollout (app shell → content migration → kids track + review gate).
+Phase 1 (app shell) — router/layout live with placeholder Home/Kids/Grown-ups
+pages, proving the deploy pipeline end to end. See the "Spark" plan for the
+full phased rollout (app shell → content migration → kids track + review
+gate).
 
 ## Development
 
@@ -36,5 +37,5 @@ npm run build      # tsc -b && vite build
 ## Deploy
 
 Pushes to `main` deploy automatically via
-`.github/workflows/deploy-cloudflare-pages.yml` to the `ajch-horizon`
+`.github/workflows/deploy-cloudflare-pages.yml` to the `ajch-spark`
 Cloudflare Pages project.
