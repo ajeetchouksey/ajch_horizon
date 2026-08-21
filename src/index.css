@@ -27,9 +27,12 @@
 }
 
 @layer base {
-  html {
-    overflow: hidden;
-  }
+  /* NOT overflow: hidden here, unlike ajch_platform's index.css (this file's
+     fork source) — ajch_platform locks html/body and scrolls inside its
+     Layout.tsx's <main overflow-y-auto> (a fixed-shell app with a persistent
+     sidebar). Spark's Layout.tsx has no such inner scroll container — it's a
+     plain single-column page — so html/body must be the scroll region, or
+     nothing below the first viewport (including the footer) is reachable. */
   body {
     @apply text-slate-100 antialiased;
     font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
@@ -42,7 +45,6 @@
       #0e1a2d;
     background-attachment: scroll;
     -webkit-font-smoothing: antialiased;
-    overflow: hidden;
   }
 }
 

@@ -6,6 +6,7 @@ import { ArrowLeft } from 'lucide-react';
 import { Badge } from '@/components/ui';
 import type { BadgeVariant } from '@/components/ui';
 import { GoldenRuleRibbon } from '@/components/GoldenRuleRibbon';
+import { LessonBlockquote } from '@/components/LessonCallout';
 
 interface LessonPageProps {
   icon: ElementType;
@@ -38,7 +39,7 @@ export function LessonPage({ icon: Icon, title, summary, badge, backTo, backLabe
       {summary && <p className="text-sm text-slate-400 max-w-xl mb-8">{summary}</p>}
 
       <article className="prose prose-invert prose-sm sm:prose-base max-w-none prose-headings:font-black prose-a:text-[var(--aarya-accent)] mb-10">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={{ blockquote: LessonBlockquote }}>{markdown}</ReactMarkdown>
       </article>
 
       <GoldenRuleRibbon />
