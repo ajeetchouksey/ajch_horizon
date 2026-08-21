@@ -16,6 +16,14 @@
 :root {
   --aarya-accent: var(--aarya-amber-400);
   --aarya-accent-2: var(--aarya-emerald-400);
+
+  /* Supplementary display faces for accent use only (headings warmth,
+     terminal motifs) — Inter stays the canonical body/default font per
+     @aaryaai/brand's type-family rule. Not a brand-package extension,
+     just an additive per-vertical choice, same spirit as the 2-token
+     color extension above. */
+  --font-heading-accent: 'Fredoka', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono-accent: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 }
 
 @layer base {
