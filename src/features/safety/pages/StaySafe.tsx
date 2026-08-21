@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import {
-  ShieldCheck, EyeOff, Search, Theater, AlertTriangle, Heart,
-  Lock, Mail, Fingerprint, Footprints, Smile, ChevronRight,
+  ShieldCheck, EyeOff, Search, Theater, AlertTriangle, Heart, ChevronRight,
 } from 'lucide-react';
-import { GlassCard, SectionHeader, Badge } from '@/components/ui';
+import { GlassCard, SectionHeader } from '@/components/ui';
 import { GoldenRuleRibbon } from '@/components/GoldenRuleRibbon';
+import { SAFETY_TOPICS } from '@/content/stay-safe';
 
 // "Stay Safe" — Spark's differentiator pillar. Master plan §7.
 // The 5 Golden Safety Rules get full real content (not a teaser) —
@@ -43,14 +43,6 @@ const GOLDEN_RULES = [
   },
 ];
 
-const DEEPER_TOPICS = [
-  { icon: Lock, title: 'Privacy & data', desc: 'Why does AI want your info? Data is the fuel — guard it.' },
-  { icon: Mail, title: 'Scams & phishing', desc: 'AI-written fake messages, prize scams, fake friend requests.' },
-  { icon: Fingerprint, title: 'Deepfakes & misinformation', desc: 'Spotting the tells: weird hands, blurry backgrounds, "too perfect."' },
-  { icon: Footprints, title: 'Digital footprint', desc: 'What you type may be stored — think before you share.' },
-  { icon: Smile, title: 'Healthy habits', desc: 'Screen-time balance; AI is a tool, not a friend replacement.' },
-];
-
 export default function StaySafe() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
@@ -87,15 +79,17 @@ export default function StaySafe() {
         <h2 className="text-lg font-black text-white mb-1">Go deeper</h2>
         <p className="text-sm text-slate-400 mb-6">Real security topics, explained at a kid's level.</p>
         <div className="grid sm:grid-cols-2 gap-4">
-          {DEEPER_TOPICS.map(({ icon: Icon, title, desc }) => (
-            <GlassCard key={title} accent="slate" className="p-5 flex items-start gap-3">
-              <Icon size={20} className="text-slate-400 shrink-0 mt-0.5" />
-              <div className="flex-1">
-                <p className="font-bold text-white text-sm mb-1">{title}</p>
-                <p className="text-xs text-slate-400 leading-relaxed">{desc}</p>
-              </div>
-              <Badge label="Soon" variant="slate" size="xs" />
-            </GlassCard>
+          {SAFETY_TOPICS.map(({ slug, icon: Icon, title, summary }) => (
+            <Link key={slug} to={`/stay-safe/${slug}`} className="block">
+              <GlassCard accent="slate" className="p-5 flex items-start gap-3 h-full transition-transform duration-200 hover:-translate-y-0.5">
+                <Icon size={20} className="text-slate-400 shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <p className="font-bold text-white text-sm mb-1">{title}</p>
+                  <p className="text-xs text-slate-400 leading-relaxed">{summary}</p>
+                </div>
+                <ChevronRight size={16} className="shrink-0 text-slate-500 mt-0.5" />
+              </GlassCard>
+            </Link>
           ))}
         </div>
       </div>

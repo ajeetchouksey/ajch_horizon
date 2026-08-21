@@ -1,15 +1,11 @@
-import { Hammer, Sparkles, Flame, Zap } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Hammer, ChevronRight } from 'lucide-react';
 import { SectionHeader, GlassCard, Badge } from '@/components/ui';
+import { BUILD_TIERS } from '@/content/build';
 
 // "Build" — age-tiered projects. Master plan §6.
-// Light stub only this phase: full curriculum/project content is later
-// work — this exists so the top nav has no dead link.
-const TIERS = [
-  { icon: Sparkles, name: 'Sparks', ageRange: '8–10', vibe: 'Curious beginners', sample: 'Talk to an AI storyteller; make an AI coloring buddy.', accent: 'emerald' as const, badgeVariant: 'emerald' as const },
-  { icon: Flame, name: 'Flames', ageRange: '11–13', vibe: 'Confident creators', sample: 'Build a simple chatbot; generate art responsibly with Scratch + AI blocks.', accent: 'amber' as const, badgeVariant: 'amber' as const },
-  { icon: Zap, name: 'Blaze', ageRange: '14–16', vibe: 'Future builders', sample: 'Intro to Python + a real API; build a quiz bot; an ethics-in-design challenge.', accent: 'purple' as const, badgeVariant: 'purple' as const },
-];
-
+// Cards link to each tier's real project write-ups (see BuildTier.tsx) —
+// metadata comes from the shared content-index module.
 export default function Build() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
@@ -20,17 +16,22 @@ export default function Build() {
       />
 
       <div className="space-y-4 mt-8">
-        {TIERS.map(({ icon: Icon, name, ageRange, vibe, sample, accent, badgeVariant }) => (
-          <GlassCard key={name} accent={accent} className="p-6">
-            <div className="flex items-center gap-2 mb-2">
-              <Icon size={18} style={{ color: `var(--aarya-${accent}-400)` }} />
-              <p className="font-black text-white text-base">{name}</p>
-              <Badge label={ageRange} variant={badgeVariant} size="xs" />
-              <span className="text-xs text-slate-500">{vibe}</span>
-            </div>
-            <p className="text-sm text-slate-400 leading-relaxed mb-3">{sample}</p>
-            <Badge label="Projects for this tier are coming soon" variant="slate" size="xs" />
-          </GlassCard>
+        {BUILD_TIERS.map(({ slug, icon: Icon, name, ageRange, vibe, accent, badgeVariant }) => (
+          <Link key={slug} to={`/build/${slug}`} className="block">
+            <GlassCard accent={accent} className="p-6 transition-transform duration-200 hover:-translate-y-0.5">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <Icon size={18} style={{ color: `var(--aarya-${accent}-400)` }} />
+                  <p className="font-black text-white text-base">{name}</p>
+                  <Badge label={ageRange} variant={badgeVariant} size="xs" />
+                  <span className="text-xs text-slate-500">{vibe}</span>
+                </div>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold shrink-0" style={{ color: `var(--aarya-${accent}-400)` }}>
+                  2 projects <ChevronRight size={14} />
+                </span>
+              </div>
+            </GlassCard>
+          </Link>
         ))}
       </div>
     </div>

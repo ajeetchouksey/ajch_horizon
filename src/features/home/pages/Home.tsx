@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Rocket, Brain, Gamepad2, ShieldCheck, ChevronRight,
-  Sparkles, Flame, Zap, Lock, Award, Compass, ExternalLink,
+  Zap, Lock, Award, Compass, ExternalLink,
 } from 'lucide-react';
 import { GlassCard, Badge } from '@/components/ui';
 import { GoldenRuleRibbon } from '@/components/GoldenRuleRibbon';
 import { AgeTierCard } from '@/components/AgeTierCard';
+import { BUILD_TIERS } from '@/content/build';
 
 // Full homepage per the Spark master plan §4. Built on Spark's existing
 // dark/amber brand system (@aaryaai/brand tokens) — see docs/design-sync.md.
@@ -17,12 +18,6 @@ const WHAT_IS_SPARK = [
   { icon: Brain, title: 'Understand AI', desc: 'Discover what AI really is, in words that actually make sense.', to: '/discover', cta: 'Explore', accent: 'blue' as const },
   { icon: Gamepad2, title: 'Play & Build', desc: 'Fun games, cool projects, and mini-missions you get to create.', to: '/play', cta: "Let's Play", accent: 'emerald' as const },
   { icon: ShieldCheck, title: 'Stay Safe', desc: 'Become a smart, kind, and safe AI explorer.', to: '/stay-safe', cta: 'Learn How', accent: 'purple' as const },
-];
-
-const AGE_TIERS = [
-  { icon: Sparkles, name: 'Sparks', ageRange: '8–10', vibe: 'Curious beginners', accent: 'emerald' as const, badgeVariant: 'emerald' as const },
-  { icon: Flame, name: 'Flames', ageRange: '11–13', vibe: 'Confident creators', accent: 'amber' as const, badgeVariant: 'amber' as const },
-  { icon: Zap, name: 'Blaze', ageRange: '14–16', vibe: 'Future builders', accent: 'purple' as const, badgeVariant: 'purple' as const },
 ];
 
 const SUPERPOWERS = [
@@ -142,7 +137,7 @@ export default function Home() {
           Choose your path. Learn at your level. Grow at your pace.
         </p>
         <div className="grid sm:grid-cols-3 gap-4">
-          {AGE_TIERS.map((tier) => <AgeTierCard key={tier.name} {...tier} />)}
+          {BUILD_TIERS.map((tier) => <AgeTierCard key={tier.slug} {...tier} to={`/build/${tier.slug}`} />)}
         </div>
       </section>
 

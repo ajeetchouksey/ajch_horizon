@@ -1,42 +1,11 @@
-import { Compass, Brain, GitBranch, Smartphone, Users, Layers, ArrowRight } from 'lucide-react';
-import { GlassCard, SectionHeader, Badge } from '@/components/ui';
+import { Link } from 'react-router-dom';
+import { Compass, ChevronRight } from 'lucide-react';
+import { GlassCard, SectionHeader } from '@/components/ui';
+import { DISCOVER_TOPICS } from '@/content/discover';
 
 // "Discover" — What is AI? explainers. Master plan §5.1.
-// First-pass teaser content: real framing copy per topic, full lesson
-// depth is later Content Calendar work (§10), not this phase.
-const TOPICS = [
-  {
-    icon: Brain,
-    title: 'What is AI, really?',
-    desc: 'AI is a super-fast pattern-guesser, not a magic brain. It learns from examples instead of being told exact rules — and that\'s the key to understanding everything else about it.',
-    accent: 'blue' as const,
-  },
-  {
-    icon: GitBranch,
-    title: 'How machines learn',
-    desc: 'Imagine showing a computer 1,000 photos of cats until it starts noticing the patterns itself — pointy ears, whiskers, fur. That\'s the "show it lots of examples" story behind most AI.',
-    accent: 'emerald' as const,
-  },
-  {
-    icon: Smartphone,
-    title: 'AI in your day',
-    desc: 'Video recommendations, voice assistants, game bots, autocorrect — AI is already quietly working behind a lot of the apps and games you use every day.',
-    accent: 'amber' as const,
-  },
-  {
-    icon: Users,
-    title: 'AI vs. Human',
-    desc: 'AI is great at spotting patterns in huge piles of data, fast. Only humans can truly feel, care, and make ethical judgment calls — that difference matters more than it sounds.',
-    accent: 'purple' as const,
-  },
-  {
-    icon: Layers,
-    title: 'Types of AI',
-    desc: 'Chatbots that talk, image makers that draw, recommenders that suggest, and robots that move — AI shows up in a few different shapes. Here\'s how to tell them apart.',
-    accent: 'rose' as const,
-  },
-];
-
+// Cards link to real full lesson pages (see DiscoverLesson.tsx) —
+// metadata comes from the shared content-index module.
 export default function Discover() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
@@ -49,13 +18,17 @@ export default function Discover() {
       />
 
       <div className="grid sm:grid-cols-2 gap-5 mt-8">
-        {TOPICS.map(({ icon: Icon, title, desc, accent }) => (
-          <GlassCard key={title} accent={accent} className="p-6">
-            <Icon size={24} style={{ color: `var(--aarya-${accent}-400)` }} className="mb-3" />
-            <p className="font-black text-white text-base mb-2">{title}</p>
-            <p className="text-sm text-slate-400 leading-relaxed mb-4">{desc}</p>
-            <Badge label="Full lesson coming soon" variant="slate" size="xs" icon={ArrowRight} />
-          </GlassCard>
+        {DISCOVER_TOPICS.map(({ slug, icon: Icon, title, summary, accent }) => (
+          <Link key={slug} to={`/discover/${slug}`} className="block h-full">
+            <GlassCard accent={accent} className="p-6 h-full transition-transform duration-200 hover:-translate-y-0.5">
+              <Icon size={24} style={{ color: `var(--aarya-${accent}-400)` }} className="mb-3" />
+              <p className="font-black text-white text-base mb-2">{title}</p>
+              <p className="text-sm text-slate-400 leading-relaxed mb-4">{summary}</p>
+              <span className="inline-flex items-center gap-1 text-sm font-semibold" style={{ color: `var(--aarya-${accent}-400)` }}>
+                Read the lesson <ChevronRight size={14} />
+              </span>
+            </GlassCard>
+          </Link>
         ))}
       </div>
     </div>

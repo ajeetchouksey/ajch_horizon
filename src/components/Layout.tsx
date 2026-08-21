@@ -4,6 +4,9 @@ import { Zap, Compass, Gamepad2, Hammer, ShieldCheck, Users, Search, ExternalLin
 import { Breadcrumb } from './ui';
 import { Badge } from './ui';
 import { GoldenRuleRibbon } from './GoldenRuleRibbon';
+import { DISCOVER_TOPICS } from '@/content/discover';
+import { SAFETY_TOPICS } from '@/content/stay-safe';
+import { BUILD_TIERS } from '@/content/build';
 
 const NAV = [
   { to: '/discover', label: 'Discover', icon: Compass, end: false },
@@ -36,6 +39,11 @@ const BREADCRUMB_LABELS: Record<string, string> = {
   'grown-ups': 'Grown-Ups',
   legal: 'Legal',
   privacy: 'Privacy Policy',
+  // Dynamic lesson/tier slugs — real titles instead of raw slugs, sourced
+  // from each section's content-index module (single source of truth).
+  ...Object.fromEntries(DISCOVER_TOPICS.map((t) => [t.slug, t.title])),
+  ...Object.fromEntries(SAFETY_TOPICS.map((t) => [t.slug, t.title])),
+  ...Object.fromEntries(BUILD_TIERS.map((t) => [t.slug, t.name])),
 };
 
 // Auto breadcrumbs from the URL — same pattern as ajch_platform's Layout.tsx.
